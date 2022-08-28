@@ -10,9 +10,9 @@ Python Port Scanner script using mainly the socket library.
 - A port range can be provided using the -p argument (e.g.: 53-443);
 - If no range is provided, then the script will scan all 65535 ports;
 - Using the -o argument, the user can choose from 3 different options:
-  - Option 0 will scan the 10 most common ports that are usually open (20, 21, 22, 23, 25, 53, 80, 110, 119, 443);
-  - Option 1 
-  - Option 2
+  - Option 1 will scan the 10 most common ports that are usually open (20, 21, 22, 23, 25, 53, 80, 110, 119, 443);
+  - Option 2 will scan only private ports (1-1023);
+  - Option 3 will scan only HTTP and HTTPS ports (80 and 443);
 - The user must use python3 to run the script.
 - 
 Examples:
