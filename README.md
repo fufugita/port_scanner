@@ -14,7 +14,6 @@ Python Port Scanner script using mainly the socket library.
   - Option 2 will scan only private ports (1-1023);
   - Option 3 will scan only HTTP and HTTPS ports (80 and 443);
 - The user must use python3 to run the script.
-- 
 Examples:
 ```
 python3 port_scanner.py -t 8.8.8.8
