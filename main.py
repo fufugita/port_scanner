@@ -21,9 +21,6 @@ def get_arguments():
 
     if not args.ports and not args.localhost and not args.options and not args.web:
         args.ports = "1-65535"
-
-    if args.ports:
-        print("Scanning give port(s)...")
     
     if args.localhost:
         print("Scanning localhost...")
@@ -92,10 +89,7 @@ class PortScanner:
         end_time = time.time()
         print("To scan all ports it took {0:.2f} seconds".format(end_time-start_time))
             
-def main():
+if __name__ == '__main__':
     args = get_arguments()
     scanner = PortScanner(target=args.target, ports=args.ports, options=args.options)
     scanner.scan()
-
-if __name__ == '__main__':
-    main()
