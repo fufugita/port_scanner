@@ -47,6 +47,7 @@ class PortScanner:
         self.target = target
         self.ports = ports
         self.options = options
+        self.banner = None
     
     # Função que verifica se a porta está aberta com o 'socket'
     def scan_ports(self, port):
@@ -57,16 +58,17 @@ class PortScanner:
 
             s.connect((self.target, port))
             port = "{0}".format(port)
+            self.banner = s.recv(1024).decode().lower()
 
             try:
-                banner = s.recv(1024).decode()
-                print("Port {0} is open with banner {1}.".format(port, banner))
+                print("Port {0} is open with banner {1}".format(port, self.banner))
             except:
                 print("Port {0} is open.".format(port))
            
             s.close()
         except:
             pass
+        
 
     def scan(self):
         print("\nScanning IP: {0}...".format(self.target))
@@ -80,10 +82,17 @@ class PortScanner:
         for port in self.ports:
             thread = threading.Thread(target=self.scan_ports(port), args=[port])
             thread.start()
-        end_time = time.time()
+        end_time = time.time() 
+        
         print("To scan all ports it took {0:.2f} seconds".format(end_time-start_time))
+
+        if "debian" or "ubuntu" in self.banner:
+            print("OS: Linux")
+        elif "windows" in self.banner:
+        	print("OS: Windows")
             
 if __name__ == '__main__':
     args = get_arguments()
     scanner = PortScanner(target=args.target, ports=args.ports, options=args.options)
     scanner.scan()
+
